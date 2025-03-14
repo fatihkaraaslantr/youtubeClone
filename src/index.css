@@ -1,9 +1,26 @@
 @import "tailwindcss";
 
 body {
-  margin: 0;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: black;
+}
+
+.videos {
+  height: calc(100vh -70px);
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 50px;
+}
+
+.videos::-webkit-scrollbar {
+  background: black;
+  width: 10px;
+}
+
+.videos::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+  height: 40px;
 }
