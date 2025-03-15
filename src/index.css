@@ -24,3 +24,22 @@ body {
   border-radius: 4px;
   height: 40px;
 }
+
+.detail-page {
+}
+
+.page-content {
+  max-width: 1600px !important;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto 400px;
+  gap: 40px;
+  padding: 40px 60px;
+}
+
+@media (max-width: 1200px) {
+  .page-content {
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+  }
+}

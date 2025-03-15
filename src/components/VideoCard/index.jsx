@@ -1,13 +1,30 @@
 import millify from "millify";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const VideoCard = ({ data }) => {
+  //video resmi state'i
+  const [isHover, setIsHover] = useState(false);
+
   console.log(data);
 
-  const thumbnail = data.thumbnails[data.thumbnails.length - 1].url;
+  //video card hover olunursa..
+  const thumbnail =
+    isHover && data.movingThumbnails
+      ? data.movingThumbnails[data.movingThumbnails.length - 1].url
+      : data.thumbnails[data.thumbnails.length - 1].url;
+
+  const movingThumbnails =
+    data.movingThumbnails &&
+    data.movingThumbnails[data.movingThumbnails.length - 1].url;
 
   return (
-    <div>
+    //!video card yapısı
+    <Link to={`/watch?v=${data.videoId}`} className="cursor-pointer">
       {/* resim */}
-      <div>
+      <div
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         <img
           className="rounded-lg w-full h-full "
           src={thumbnail}
@@ -24,7 +41,7 @@ const VideoCard = ({ data }) => {
         <div>
           <h4 className="line-clamp-2 font-bold">{data.title}</h4>
           <p>{data.author.title}</p>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center mt-2">
             {data.stats.views && (
               <p className="font-bold">
                 <span>{millify(data.stats.views)}</span>
@@ -33,7 +50,7 @@ const VideoCard = ({ data }) => {
             )}
 
             {data.isLiveNow ? (
-              <p className="bg-red-500 py-0.5 px-2 rounded-lg">Canlı</p>
+              <p className="bg-red-500 py-0.5 px-2 rounded-lg mt-2">Canlı</p>
             ) : (
               <p>
                 <span>{data.publishedTimeText}</span>
@@ -42,7 +59,7 @@ const VideoCard = ({ data }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

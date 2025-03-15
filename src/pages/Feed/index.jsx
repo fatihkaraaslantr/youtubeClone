@@ -33,6 +33,7 @@ const Feed = () => {
   }, [selectedCat]);
 
   return (
+    //!Feed'e veriyi dinamik render et.
     <div className="flex">
       {/* sidebar */}
       <Sidebar selectedCat={selectedCat} />
@@ -43,7 +44,7 @@ const Feed = () => {
         ) : error ? (
           <h1>hataa</h1>
         ) : (
-          videos.map(
+          videos?.map(
             (video, key) =>
               video.type === "video" && (
                 <VideoCard key={key} data={video.video} />
